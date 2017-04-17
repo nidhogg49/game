@@ -29,7 +29,9 @@ var path ={
 gulp.task('pug', function() {
     return gulp.src(path.src.html)
         .pipe(pug())
-        .pipe(gulp.dest(path.build.html));
+        .pipe(gulp.dest(function(file) {
+            return file.base;
+        }));
 });
 
 gulp.task('less', function() {
