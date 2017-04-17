@@ -4,40 +4,43 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     pug = require('gulp-pug');
 
-var opt = {
+var path ={
 
-    path:{
+    src: {
+        html: './src/*.pug',
+        js: './src/js/*.js',
+        style: './src/style/*.less'
+    },
 
-        src: {
-            html: './src/**/*.jade',
-            js: './src/js/*.js',
-            style: './src/style/*.less'
-        },
+    watch: {
+        html: './src/**/*.pug',
+        js: './src/js/*.js',
+        style: './src/style/**/*.less'
+    },
 
-        watch: {
-            html: './src/**/*.jade',
-            js: './src/js/*.js',
-            style: './src/style/*.less'
-        },
-
-        build: {
-            html: './build/',
-            js: './src/js/',
-            style: './src/style/'
-        }
+    build: {
+        html: './build/',
+        js: './build/js/',
+        style: './build/style/'
     }
 
 };
 
 gulp.task('pug', function() {
-    return gulp.src(opt.path.src.html)
-        .pipe(pug({
-            // Your options in here.
-        }))
+    return gulp.src(path.src.html)
+        .pipe(pug())
+        .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('less', function() {
-    gulp.src(opt.path.src.style)
+    gulp.src(path.src.style)
         .pipe(less())
-        .pipe(gulp.dest(opt.path.build.style));
+        .pipe(gulp.dest(path.build.style));
 });
+
+gulp.task('watcher',function(){
+    gulp.watch(path.watch.html, ['pug']);
+    gulp.watch(path.watch.style, ['less']);
+});
+
+gulp.task('default', ['watcher']);

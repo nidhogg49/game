@@ -1,5 +1,5 @@
 block vars
-    - var pageTitle = 'Главная'
+    - var pageTitle = 'Сайт-резюме'
 
 
 doctype html
@@ -11,7 +11,7 @@ html(lang='ru')
         title=pageTitle
 
         block styles
-            link(rel='stylesheet', href='css/main.css')
+            link(rel='stylesheet', href='style/main.css')
 
         block scripts
             script(src='../js/main.min.js')
@@ -19,9 +19,66 @@ html(lang='ru')
     body
 
         block header
-            include header
+            include components/header
 
         block content
 
+            main
+
+                - var nav__li = [ {title:'Интро', link:'#intro'}, {title:'Обо мне', link:'#about'}, {title:'Навыки', link:'#skills'}, {title:'Pens', link:'#pens'}, {title:'Контакты', link:'#contacts'} ]
+                nav.nav
+                    .container
+                        .nav__links
+                            ul
+                                - for (var i = 0; i < nav__li.length; i++)
+                                    li
+                                        a(href=nav__li[i].link).link.link_nav=nav__li[i].title
+                        a(href="")#hamburger
+
+                section#about.block.block_gray
+                    .container
+                        .section__title
+                            h2.h2 Немного обо мне
+                            p.p Познакомимся поближе
+
+                section#skills.block
+                    .container
+                        .section__title
+                            h2.h2 Навыки
+                            p.p Немного подробнее о том, что я умею и знаю
+
+                        .section__text
+                            h3.h3 Профессиональные, технические навыки
+                            ul
+                                li HTML5,CSS3
+                                    ul
+                                        li Адаптивная верстка
+                                        li Кроссбраузерная верстка
+                                        li Валидная верстка
+                                li HTML5,CSS3
+                                    ul
+                                        li Адаптивная верстка
+                                        li Кроссбраузерная верстка
+                                        li Валидная верстка
+
+                            h3.h3 Нетехнические навыки, личные качества
+                                ul
+                                    li Умение работать в команде
+                                    li
+
+                section#pens.block.block_gray
+                    .container
+                        .section__title
+                            h2.h2 Профессиональные интересы
+                            p.p Это только профессиональные интересы, ничего личного
+
+
+
+                section#contacts.contacts.block
+                    .container
+                        .section__title
+                            h2.h2 Контакты
+                            p.p Как связаться со мной
+
         block footer
-            include footer
+            include components/footer
