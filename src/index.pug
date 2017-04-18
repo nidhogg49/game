@@ -11,7 +11,7 @@ html(lang='ru')
         title=pageTitle
 
         block styles
-            link(rel='stylesheet', href='./style/main.css')
+            link(rel='stylesheet', href='./build/style/main.css')
 
         block scripts
             script(src='../js/main.min.js')
@@ -47,7 +47,7 @@ html(lang='ru')
                             h2.h2 Навыки
                             p.p Немного подробнее о том, что я умею и знаю
 
-                        .section__text
+                        .column.column_left
                             h3.h3 Профессиональные, технические навыки
                             ul
                                 li HTML5,CSS3
@@ -61,10 +61,11 @@ html(lang='ru')
                                         li Кроссбраузерная верстка
                                         li Валидная верстка
 
+                        .column.column_right
                             h3.h3 Нетехнические навыки, личные качества
-                                ul
-                                    li Умение работать в команде
-                                    li
+                            ul
+                                li Умение работать в команде
+                                li
 
                 section#pens.block.block_gray
                     .container
