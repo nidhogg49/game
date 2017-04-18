@@ -577,6 +577,10 @@ template {
   content: '\f14a';
 }
 /* '' */
+.icon-skype:before {
+  content: '\f17e';
+}
+/* '' */
 * {
   box-sizing: border-box;
 }
