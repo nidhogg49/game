@@ -38,9 +38,17 @@ gulp.task('less', function() {
         .pipe(gulp.dest(path.build.style));
 });
 
+gulp.task('js',function(){
+    gulp.src(path.src.js)
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(path.build.js));
+});
+
 gulp.task('watcher',function(){
     gulp.watch(path.watch.html, ['pug']);
     gulp.watch(path.watch.style, ['less']);
+    gulp.watch(path.watch.js, ['js']);
 });
 
 gulp.task('default', ['watcher']);

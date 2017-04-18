@@ -14,7 +14,7 @@ html(lang='ru')
             link(rel='stylesheet', href='./build/style/main.css')
 
         block scripts
-            script(src='../js/main.min.js')
+            script(src='./build/js/main.min.js')
 
     body
 
@@ -25,7 +25,7 @@ html(lang='ru')
 
             main
 
-                - var nav__li = [ {title:'Интро', link:'#intro'}, {title:'Обо мне', link:'#about'}, {title:'Навыки', link:'#skills'}, {title:'Pens', link:'#pens'}, {title:'Контакты', link:'#contacts'} ]
+                - var nav__li = [ {title:'Интро', link:'#intro'}, {title:'Обо мне', link:'#about'}, {title:'Навыки', link:'#skills'}, {title:'Интересы', link:'#pens'}, {title:'Контакты', link:'#contacts'} ]
                 nav.nav
                     .container
                         .nav__links
@@ -98,7 +98,7 @@ html(lang='ru')
                 section#pens.block.block_gray
                     .container
                         .section__title
-                            h2.h2 Профессиональные интересы(Self-Studying)
+                            h2.h2 Профессиональные интересы (Self-Studying)
                             p.p Учить новое нужно постоянно
 
                         .column.column_left

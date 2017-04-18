@@ -696,10 +696,15 @@ h3,
   z-index: 1;
 }
 .nav {
+  width: 100%;
   background: #ffffff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   transition: all 200ms ease;
   z-index: 1000;
+}
+.nav_fixed {
+  position: fixed;
+  top: 0;
 }
 .nav__links {
   text-align: center;
