@@ -19,7 +19,7 @@ var path ={
     },
 
     build: {
-        html: './build/',
+        html: './',
         js: './build/js/',
         style: './build/style/'
     }
@@ -29,9 +29,7 @@ var path ={
 gulp.task('pug', function() {
     return gulp.src(path.src.html)
         .pipe(pug())
-        .pipe(gulp.dest(function(file) {
-            return file.base;
-        }));
+        .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('less', function() {
