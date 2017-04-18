@@ -55,18 +55,18 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-// $(document).ready(function(){
-//     var touch = $('#hamburger');
-//     var menu = $('.nav__links');
-//
-//     $(touch).on('click', function(e) {
-//         e.preventDefault();
-//         menu.slideToggle();
-//     });
-//     $(window).resize(function(){
-//         var wid = $(window).width();
-//         if(wid > 760 && menu.is(':hidden')) {
-//             menu.removeAttr('style');
-//         }
-//     });
-// });
+$(document).ready(function(){
+    var touch = $('#hamburger');
+    var menu = $('.nav__links');
+
+    $(touch).on('click', function(e) {
+        e.preventDefault();
+        menu.slideToggle();
+    });
+    $(window).resize(function(){
+        var wid = $(window).width();
+        if(wid > 760 && menu.is(':hidden')) {
+            menu.removeAttr('style');
+        }
+    });
+});
