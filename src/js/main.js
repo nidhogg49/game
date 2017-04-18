@@ -2,9 +2,12 @@
 
 function parallax(){
     var scrolled = window.pageYOffset,
-        elem = document.querySelector('.header__text');
+        elem = document.querySelector('.header__text'),
+        elemOffsetTop = elem.getBoundingClientRect().top;
 
-    elem.style['transform'] = 'translateY('+ (-scrolled * 1) +'px)';
+    if (elemOffsetTop > 0) {
+        elem.style['transform'] = 'translateY('+ (-scrolled * 1) +'px)';
+    }
 }
 
 function navigationfix(){
@@ -37,12 +40,27 @@ function scroll(to, duration){
     }, 10);
 }
 
+function toggleClass(el, myClass) {
+    if (el && el.className && el.className.indexOf(myClass) >= 0) {
+        var pattern = new RegExp('\\s*' + myClass + '\\s*');
+
+        el.className = el.className.replace(pattern, ' ');
+    } else {
+        el.className = el.className + ' ' + myClass;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function(){
-    var anchorLinks = document.querySelectorAll('.link_nav');
+    var anchorLinks = document.querySelectorAll('.link_nav'),
+        menu = document.querySelector('.nav__links'),
+        hamburger = document.getElementById('hamburger');
 
     for (var i = 0; i < anchorLinks.length; i++) {
         anchorLinks[i].addEventListener('click', function (e) {
             e.preventDefault();
+
+            toggleClass(hamburger, 'active');
+            toggleClass(menu, 'active');
 
             var elementClick = this.getAttribute("href"),
                 destination = document.querySelector(elementClick).getBoundingClientRect().top + document.body.scrollTop;
@@ -52,20 +70,11 @@ document.addEventListener('DOMContentLoaded', function(){
             return false;
         });
     }
-});
 
-// $(document).ready(function(){
-//     var touch = $('#hamburger');
-//     var menu = $('.nav__links');
-//
-//     $(touch).on('click', function(e) {
-//         e.preventDefault();
-//         menu.slideToggle();
-//     });
-//     $(window).resize(function(){
-//         var wid = $(window).width();
-//         if(wid > 760 && menu.is(':hidden')) {
-//             menu.removeAttr('style');
-//         }
-//     });
-// });
+    hamburger.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        toggleClass(hamburger, 'active');
+        toggleClass(menu, 'active');
+    });
+});
