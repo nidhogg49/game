@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 var path ={
 
     src: {
-        html: './src/*.pug',
+        html: './src/index.pug',
         js: './src/js/*.js',
         style: './src/style/*.less'
     },
