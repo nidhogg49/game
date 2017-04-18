@@ -22,7 +22,10 @@ window.addEventListener('scroll', function() {
     parallax();
     navigationfix();
 });
+
 function scroll(to, duration){
+    if (duration <= 0) {return;}
+
     var element = document.body,
         difference = to - element.scrollTop,
         perTick = difference / duration * 10;
@@ -35,14 +38,20 @@ function scroll(to, duration){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector('.link_nav').onclick = function () {
-        var elementClick = this.getAttribute("href"),
-            destination = document.querySelector(elementClick).scrollTop;
+    var anchorLinks = document.querySelectorAll('.link_nav');
 
-        scroll(destination, 1500);
+    for (var i = 0; i < anchorLinks.length; i++) {
+        anchorLinks[i].addEventListener('click', function (e) {
+            e.preventDefault();
 
-        return false;
-    };
+            var elementClick = this.getAttribute("href"),
+                destination = document.querySelector(elementClick).getBoundingClientRect().top + document.body.scrollTop;
+
+            scroll(destination, 1500);
+
+            return false;
+        });
+    }
 });
 
 
