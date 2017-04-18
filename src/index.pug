@@ -30,9 +30,9 @@ html(lang='ru')
                     .container
                         .nav__links
                             ul
-                                - for (var i = 0; i < nav__li.length; i++)
-                                    li
-                                        a(href=nav__li[i].link).link.link_nav=nav__li[i].title
+                            - for (var i = 0; i < nav__li.length; i++)
+                                li
+                                    a(href=nav__li[i].link).link.link_nav=nav__li[i].title
                         a(href="")#hamburger
 
                 section#about.block.block_gray
@@ -40,6 +40,19 @@ html(lang='ru')
                         .section__title
                             h2.h2 Немного обо мне
                             p.p Познакомимся поближе
+                        .column.column_left
+                            h3.h3 Немного о себе
+                            p.p Доброго времени суток, я веб-разработчик из Москвы. Отлично знаю HTML5/CSS3. Имею базовые знания JavaScript/jQuery и php. Влюбился в БЭМ с первого взгляда. Стараюсь писать красивый код - красивый как с точки зрения логической структуры, так и оформления. Всегда забочусь о гибкости вёрстки и удобстве её дальнейшего использования. Верстаю в максимальном соответствии с макетом. Умею делать кросс-браузерную, респонсивную вёрстку. Мои любимые инструменты - препроцессор Stylus (в связке со сборщиком Gulp) и шаблонизатор Jade. Есть опыт работы с Git. Владею Adobe Photoshop на уровне резки макетов.
+                        .column.column_right
+                            h3.h3 Персональная информация
+                            p.p Митусов Кирилл Александрович
+                            p.p Город: Москва
+                            p.p Родился: 25 апреля 1993 года
+                            p.p Skype:
+                                a(href="skype:jack-fighter49?call") jack-fighter49
+                            p.p.icon-mail Email:
+                                a(href="mailto:nidhogg49@gmail.com") wliitweb@gmail.com
+
 
                 section#skills.block
                     .container
@@ -49,23 +62,38 @@ html(lang='ru')
 
                         .column.column_left
                             h3.h3 Профессиональные, технические навыки
-                            ul
-                                li HTML5,CSS3
+                            ul.ul_main
+                                li
+                                    span HTML5,CSS3:
                                     ul
-                                        li Адаптивная верстка
-                                        li Кроссбраузерная верстка
-                                        li Валидная верстка
-                                li HTML5,CSS3
+                                        li.icon-ok Адаптивная, валидная и кроссбраузерная верстка
+                                        li.icon-ok Twig, Pug(jade)
+                                        li.icon-ok Less,Stylus
+                                        li.icon-ok Twitter Boostrap 3
+                                li
+                                    span JavaScript:
                                     ul
-                                        li Адаптивная верстка
-                                        li Кроссбраузерная верстка
-                                        li Валидная верстка
+                                        li.icon-ok jQuery(jQueryUI, AJAX и т.д.)
+                                        li.icon-ok Работа с событиями
+                                        li.icon-ok Типы данных, замыкания, область видимости и т.д.
+                                li
+                                    span Сборка проектов:
+                                    ul
+                                        li.icon-ok Gulp
+                                        li.icon-ok Grunt
+                                li
+                                    span VCS:
+                                    ul
+                                        li.icon-ok Git
+                                        li.icon-ok bitbucket/github
 
                         .column.column_right
                             h3.h3 Нетехнические навыки, личные качества
-                            ul
-                                li Умение работать в команде
-                                li
+                            ul.ul_main
+                                li Умение работать в команде.
+                                li Умение находить решения — самостоятельно искать решения проблемы, пробовать разные варианты, гуглить и только потом дабы не тратить драгоценное время задавать конкретные вопросы.
+                                li Нести ответственность за свои решения — умение принимать технические решения и доводить их до конца, концентрироваться на задаче.
+                                li Коммуникабельный, пунктуальный, исполнительный, быстро обучаемый. Неукоснительно соблюдаю правила внутреннего трудового распорядка, служебной субординации, корпоративной этики. Опрятен.
 
                 section#pens.block.block_gray
                     .container
