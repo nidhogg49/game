@@ -186,7 +186,7 @@ $(document).ready(function(){
                     imgWrong: 'url(src/img/1_1.png)',
                 },
             ],
-            current: 1, //:TODO
+            current: 0,
             result: null
         };
 
