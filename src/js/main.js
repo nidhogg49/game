@@ -1,77 +1,9 @@
+var $slider;
+var game = {};
+
 $(document).ready(function(){
-    var $slider = $('.slider');
-    var game = {
-        name: '',
-        surname: '',
-        questions: [
-            {
-                result: null,
-                correctText: 'Верно!<br/>Вы на правильном пути.',
-                wrongText: 'Не верно.<br/>За готовой картой Клиенту надо будет приехать в офис.',
-                imgCorrect: 'url(src/img/1_2.png)',
-                imgWrong: 'url(src/img/1_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Правильно!',
-                wrongText: 'Нет, заявок подано в два раза больше',
-                imgCorrect: 'url(src/img/2_2.png)',
-                imgWrong: 'url(src/img/2_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Правильно!',
-                wrongText: 'Не верно',
-                imgCorrect: 'url(src/img/1_2.png)',
-                imgWrong: 'url(src/img/1_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Верно!<br/>Сейчас только 24%, но мы уверены, что общими усилиями их доля увеличится!',
-                wrongText: 'Хотелось бы, но нет!<br/>Функционал реализован для гарантий в рамках ФЗ.',
-                imgCorrect: 'url(src/img/2_2.png)',
-                imgWrong: 'url(src/img/2_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Верно!',
-                wrongText: 'У вас еще не было сделок по Белой зоне?<br/>Так будут!',
-                imgCorrect: 'url(src/img/1_2.png)',
-                imgWrong: 'url(src/img/1_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Верно, теперь СББОЛ стал еще оперативнее!',
-                wrongText: 'Можно и так, но зачем тратить время, если СМС Клиенту поступит быстрее!',
-                imgCorrect: 'url(src/img/2_2.png)',
-                imgWrong: 'url(src/img/2_1.png)',
-            },
-            {
-                result: null,
-                correctText: 'Верно!',
-                wrongText: '',
-                imgCorrect: 'url(src/img/1_2.png)',
-                imgWrong: 'url(src/img/1_1.png)',
-            }, 
-        ],
-        current: 1 //:TODO
-    };
-
-    localStorage.clear();
-
-    if(!localStorage.game) {
-        setGameToLocalStorage();
-    } else {
-        game = JSON.parse(localStorage.game);
-    }
-
-    $slider.slick({
-        accessibility: false,
-        arrows: false,
-        infinite: false,
-        fade: true,
-        initialSlide: getGameFromLocalStorage().current,
-    });
+    $slider = $('.slider');
+    setGame();
 
     $('.js-start').on('click', function() {
         $('.slider__input').each(function(i, el) {
@@ -150,11 +82,30 @@ $(document).ready(function(){
         $('.marker').css('transition', 'all 1.5s ease').css('transform', transform);
     });
 
-    $('.marker').on('transitionend webkitTransitionEnd oTransitionEnd', function(e) {
-        $slider.slick('slickGoTo', getGameFromLocalStorage().current,  false);
+    $('.js-button-end').on('click', function() {
+        var result = getGameFromLocalStorage().questions.reduce(function(prev, cur, index, arr){
+            var summ;
+            if(prev.result !== null && cur.result !== null) {
+                summ = prev.result + cur.result;
+            } else {
+                summ = 0;
+            }
+            return summ;
+        });
+
+        game.questions[6].result = true;
+        game.current = 10;
+        game.result = result;
+
+        $('.slider__item_userresult span').text(result + ' балл(ов)');
+        $slider.slick('slickGoTo', 10,  false);
+
+        setGameToLocalStorage();
     });
 
-
+    $('.marker').on('transitionend webkitTransitionEnd oTransitionEnd', function() {
+        $slider.slick('slickGoTo', getGameFromLocalStorage().current,  false);
+    });
 
     function setGameToLocalStorage() {
         localStorage.setItem('game', JSON.stringify(game));
@@ -177,6 +128,84 @@ $(document).ready(function(){
             } else if (el.result === false) {
                 $el.addClass('wrong');
             }
+        });
+    }
+
+    function setGame() {
+        game = {
+            name: '',
+            surname: '',
+            questions: [
+                {
+                    result: null,
+                    correctText: 'Верно!<br/>Вы на правильном пути.',
+                    wrongText: 'Не верно.<br/>За готовой картой Клиенту надо будет приехать в офис.',
+                    imgCorrect: 'url(src/img/1_2.png)',
+                    imgWrong: 'url(src/img/1_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Правильно!',
+                    wrongText: 'Нет, заявок подано в два раза больше',
+                    imgCorrect: 'url(src/img/2_2.png)',
+                    imgWrong: 'url(src/img/2_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Правильно!',
+                    wrongText: 'Не верно',
+                    imgCorrect: 'url(src/img/1_2.png)',
+                    imgWrong: 'url(src/img/1_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Верно!<br/>Сейчас только 24%, но мы уверены, что общими усилиями их доля увеличится!',
+                    wrongText: 'Хотелось бы, но нет!<br/>Функционал реализован для гарантий в рамках ФЗ.',
+                    imgCorrect: 'url(src/img/2_2.png)',
+                    imgWrong: 'url(src/img/2_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Верно!',
+                    wrongText: 'У вас еще не было сделок по Белой зоне?<br/>Так будут!',
+                    imgCorrect: 'url(src/img/1_2.png)',
+                    imgWrong: 'url(src/img/1_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Верно, теперь СББОЛ стал еще оперативнее!',
+                    wrongText: 'Можно и так, но зачем тратить время, если СМС Клиенту поступит быстрее!',
+                    imgCorrect: 'url(src/img/2_2.png)',
+                    imgWrong: 'url(src/img/2_1.png)',
+                },
+                {
+                    result: null,
+                    correctText: 'Верно!',
+                    wrongText: '',
+                    imgCorrect: 'url(src/img/1_2.png)',
+                    imgWrong: 'url(src/img/1_1.png)',
+                },
+            ],
+            current: 1, //:TODO
+            result: null
+        };
+
+        if(!localStorage.game) {
+            setGameToLocalStorage();
+        } else {
+            game = JSON.parse(localStorage.game);
+        }
+
+        $slider.slick({
+            accessibility: false,
+            arrows: false,
+            infinite: false,
+            fade: true,
+            pauseOnFocus: false,
+            pauseOnHover: false,
+            swipe: false,
+            touchMove: false,
+            initialSlide: getGameFromLocalStorage().current,
         });
     }
 });

@@ -40,9 +40,19 @@ body {
     background-repeat: no-repeat;
 }
 
-.slider .slider__item:not(.slider__item_question) {
-    background-color: #e6e6ff;
+.slider .slider__item_start {
     background-image: url(../img/0.png);
+}
+
+.slider .slider__item_userresult {
+    background-image: url(../img/result.png);
+}
+
+.slider .slider__item_start,
+.slider .slider__item_answerresult,
+.slider .slider__item_map,
+.slider .slider__item_userresult {
+    background-color: #e6e6ff;
 }
 
 .slider .slider__item_map {
@@ -214,6 +224,15 @@ body {
  margin-top: 50px;
 }
 
+.slider__item_gameresult span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.slider__item_gameresult p {
+    font-size: 16px;
+}
+
 .slider__input {
     box-shadow: #000000 0px -2px 0px 0px inset;
     -webkit-appearance: none;
@@ -251,6 +270,10 @@ body {
 
 .slider__button_long {
     margin-bottom: 24px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slider__button_square {
