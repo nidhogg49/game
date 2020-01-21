@@ -32,20 +32,20 @@ $(document).ready(function(){
         var $this = $(this);
         var questionIndex = $this.parents('.slider__item_question').index() - 1;
         var result;
-        var imgUrl;
+        var className;
         var text;
 
         if($this.hasClass('js-button-correct')) {
             result = true;
-            imgUrl = getGameFromLocalStorage().questions[questionIndex].imgCorrect;
+            className = questionIndex % 2 ? 'correct1' : 'correct2';
             text = getGameFromLocalStorage().questions[questionIndex].correctText;
         } else {
             result = false;
-            imgUrl = getGameFromLocalStorage().questions[questionIndex].imgWrong;
+            className = questionIndex % 2 ? 'wrong1' : 'wrong2';
             text = getGameFromLocalStorage().questions[questionIndex].wrongText;
         }
 
-        $('.slider__item_answerresult').css("background-image", imgUrl);
+        $('.slider__item_answerresult').addClass(className);
         $('.slider__item_answerresult .slider__title').html('<span>' + (questionIndex + 1) + ' вопрос</span>' + text);
         game.questions[questionIndex].result = result;
         game.current = $slider.slick('slickCurrentSlide') + 1;
@@ -60,26 +60,27 @@ $(document).ready(function(){
 
         switch(getGameFromLocalStorage().current) {
             case 2:
-                transform = 'translate(125px, 40px)';
+                transform = 'translate(126px, 40px)';
                 break;
             case 3:
                 transform = 'translate(206px, 110px)';
                 break;
             case 4:
-                transform = 'translate(140px, 180px)';
+                transform = 'translate(142px, 180px)';
                 break;
             case 5:
                 transform = 'translate(67px, 251px)';
                 break;
             case 6:
-                transform = 'translate(110px, 331px)';
+                transform = 'translate(112px, 331px)';
                 break;
             case 7:
-                transform = 'translate(165px, 410px)';
+                transform = 'translate(167px, 410px)';
                 break;
         }
 
         $('.marker').css('transition', 'all 1.5s ease').css('transform', transform);
+        $('.slider__item_answerresult').removeClass('correct1 correct2 wrong1 wrong2');
     });
 
     $('.js-button-end').on('click', function() {
@@ -139,16 +140,12 @@ $(document).ready(function(){
                 {
                     result: null,
                     correctText: 'Верно!<br/>Вы на правильном пути.',
-                    wrongText: 'Не верно.<br/>За готовой картой Клиенту надо будет приехать в офис.',
-                    imgCorrect: 'url(src/img/true_1.png)',
-                    imgWrong: 'url(src/img/ wrong_1.png)',
+                    wrongText: 'Не верно.<br/>За готовой картой Клиенту надо будет приехать в офис.'
                 },
                 {
                     result: null,
                     correctText: 'Правильно!',
-                    wrongText: 'Нет, заявок подано в два раза больше',
-                    imgCorrect: 'url(src/img/true_2.png)',
-                    imgWrong: 'url(src/img/ wrong_2.png)',
+                    wrongText: 'Нет, заявок подано в два раза больше'
                 },
                 {
                     result: null,
@@ -160,33 +157,25 @@ $(document).ready(function(){
                 {
                     result: null,
                     correctText: 'Верно!<br/>Сейчас только 24%, но мы уверены, что общими усилиями их доля увеличится!',
-                    wrongText: 'Хотелось бы, но нет!<br/>Функционал реализован для гарантий в рамках ФЗ.',
-                    imgCorrect: 'url(src/img/true_2.png)',
-                    imgWrong: 'url(src/img/ wrong_2.png)',
+                    wrongText: 'Хотелось бы, но нет!<br/>Функционал реализован для гарантий в рамках ФЗ.'
                 },
                 {
                     result: null,
                     correctText: 'Верно!',
-                    wrongText: 'У вас еще не было сделок по Белой зоне?<br/>Так будут!',
-                    imgCorrect: 'url(src/img/true_1.png)',
-                    imgWrong: 'url(src/img/ wrong_1.png)',
+                    wrongText: 'У вас еще не было сделок по Белой зоне?<br/>Так будут!'
                 },
                 {
                     result: null,
                     correctText: 'Верно, теперь СББОЛ стал еще оперативнее!',
-                    wrongText: 'Можно и так, но зачем тратить время, если СМС Клиенту поступит быстрее!',
-                    imgCorrect: 'url(src/img/true_2.png)',
-                    imgWrong: 'url(src/img/ wrong_2.png)',
+                    wrongText: 'Можно и так, но зачем тратить время, если СМС Клиенту поступит быстрее!'
                 },
                 {
                     result: null,
-                    correctText: 'Верно!',
+                    correctText: 'Правильно!<br/>Да, но нужно выполнитьбизнес-план',
                     wrongText: '',
-                    imgCorrect: 'url(src/img/true_1.png)',
-                    imgWrong: 'url(src/img/ wrong_1.png)',
                 },
             ],
-            current: 0,
+            current: 9, //:TODO
             result: null
         };
 
