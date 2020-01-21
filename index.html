@@ -8,24 +8,6 @@
     <link rel="stylesheet" type="text/css" href="./src/css/main.css">
     <script src="./src/js/jquery-3.4.1.min.js"></script>
     <script src="./slick/slick.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyCaRBCvSa5n17kCBw21YyDV1nfgRbgijzI",
-          authDomain: "sbofgame.firebaseapp.com",
-          databaseURL: "https://sbofgame.firebaseio.com",
-          projectId: "sbofgame",
-          storageBucket: "sbofgame.appspot.com",
-          messagingSenderId: "1042325515757",
-          appId: "1:1042325515757:web:f45279842c644691b4cbe4"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-      </script>
     <link rel="prefetch" href="./src/img/true_1.png">
     <link rel="prefetch" href="./src/img/wrong_1.png">
     <link rel="prefetch" href="./src/img/true_2.png">
@@ -120,35 +102,34 @@
         <div class="slider__item slider__item_userresult">
             <div class="slider__title">Ваш результат:</div>
             <span class="score"></span>
-            <div class="js-button-gameresult slider__button slider__button_long" onclick="$slider.slick('slickGoTo', 11,  false);">Посмотреть результаты</div>
+            <div class="js-button-gameresult slider__button slider__button_long">Посмотреть результаты</div>
         </div>
 
         <div class="slider__item slider__item_gameresult">
             <div class="slider__title">Результаты игры</div>
-            <p>
-                <span>1. Константин Константинопольский<br/></span>
-                7 баллов — 3 мин. 15 сек
-            </p>
-            <p>
-                <span>2. Константин Константинопольский<br/></span>
-                7 баллов — 3 мин. 15 сек
-            </p>
-            <p>
-                <span>3. Константин Константинопольский<br/></span>
-                7 баллов — 3 мин. 15 сек
-            </p>
-            <p>
-                <span>4. Константин Константинопольский<br/></span>
-                7 баллов — 3 мин. 15 сек
-            </p>
-            <p>
-                <span>5. Константин Константинопольский<br/></span>
-                7 баллов — 3 мин. 15 сек
-            </p>
+            <div class="scoretable"></div>
             <div class="js-button-userresult slider__button slider__button_long" onclick="$slider.slick('slickGoTo', 10,  false);">Вернуться к результату</div>
         </div>
     </div>
     
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCaRBCvSa5n17kCBw21YyDV1nfgRbgijzI",
+          authDomain: "sbofgame.firebaseapp.com",
+          databaseURL: "https://sbofgame.firebaseio.com",
+          projectId: "sbofgame",
+          storageBucket: "sbofgame.appspot.com",
+          messagingSenderId: "1042325515757",
+          appId: "1:1042325515757:web:f45279842c644691b4cbe4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
     <script src="./src/js/main.js"></script>
 </body>
 </html>
