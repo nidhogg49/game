@@ -10,9 +10,19 @@ body {
     height: 100%;
 }
 
+@font-face {
+    font-family: "GraphikLCGRegular";
+    src: url("../fonts/GraphikLCG-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "GraphikLCGBlack";
+    src: url("../fonts/GraphikLCG-Black.woff") format("woff");
+}
+
 body {
     color: #000000;
-    font-family: Roboto, sans-serif;
+    font-family: GraphikLCGRegular, sans-serif;
 }
 
 .slick-list {
@@ -214,6 +224,7 @@ body {
 .slider__title {
     display: flex;
     flex-direction: column;
+    font-family: GraphikLCGBlack, sans-serif;
     font-size: 30px;
     font-weight: bold;
 }
@@ -235,6 +246,7 @@ body {
 }
 
 .slider__item_gameresult span {
+    font-family: GraphikLCGBlack, sans-serif;
     font-size: 20px;
     font-weight: bold;
 }

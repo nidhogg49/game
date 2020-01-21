@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра</title>
+    
     <link rel="stylesheet" type="text/css" href="./slick/slick.css">
     <link rel="stylesheet" type="text/css" href="./src/css/main.css">
     <script src="./src/js/jquery-3.4.1.min.js"></script>
     <script src="./slick/slick.min.js"></script>
-    <link rel="prefetch" href="./src/img/1_1.png">
-    <link rel="prefetch" href="./src/img/1_2.png">
-    <link rel="prefetch" href="./src/img/2_1.png">
-    <link rel="prefetch" href="./src/img/2_2.png">
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCaRBCvSa5n17kCBw21YyDV1nfgRbgijzI",
+          authDomain: "sbofgame.firebaseapp.com",
+          databaseURL: "https://sbofgame.firebaseio.com",
+          projectId: "sbofgame",
+          storageBucket: "sbofgame.appspot.com",
+          messagingSenderId: "1042325515757",
+          appId: "1:1042325515757:web:f45279842c644691b4cbe4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+    <link rel="prefetch" href="./src/img/true_1.png">
+    <link rel="prefetch" href="./src/img/wrong_1.png">
+    <link rel="prefetch" href="./src/img/true_2.png">
+    <link rel="prefetch" href="./src/img/wrong_2.png">
 </head>
 <body>
     <div class="slider">
