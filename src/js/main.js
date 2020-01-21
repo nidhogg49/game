@@ -84,21 +84,14 @@ $(document).ready(function(){
     });
 
     $('.js-button-end').on('click', function() {
-        var result = getGameFromLocalStorage().questions.reduce(function(prev, cur, index, arr){
-            var summ;
-            if(prev.result !== null && cur.result !== null) {
-                summ = prev.result + cur.result;
-            } else {
-                summ = 0;
-            }
-            return summ;
-        });
-
         game.questions[6].result = true;
         game.current = 10;
-        game.result = result;
 
-        $('.slider__item_userresult span').text(result + ' балл(ов)');
+        game.questions.forEach(function(el){
+            game.score = game.score + el.result;
+        });
+
+        $('.slider__item_userresult .score').html(game.score + '<span>' + (game.score === 0 ? 'баллов' : game.score === 1 ? 'балл' : game.score < 5 ? 'баллa' : 'баллов') + '<span/>');
         $slider.slick('slickGoTo', 10,  false);
 
         setGameToLocalStorage();
@@ -176,7 +169,7 @@ $(document).ready(function(){
                 },
             ],
             current: 0,
-            result: null
+            score: 0
         };
 
         if(!localStorage.game) {
@@ -196,5 +189,7 @@ $(document).ready(function(){
             touchMove: false,
             initialSlide: getGameFromLocalStorage().current,
         });
+
+        $('.slider__item_userresult .score').html(game.score + '<span>' + (game.score === 0 ? 'баллов' : game.score === 1 ? 'балл' : game.score < 5 ? 'баллa' : 'баллов') + '<span/>');
     }
 });

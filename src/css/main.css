@@ -68,6 +68,22 @@ body {
     background-image: url(../img/result.png);
 }
 
+.slider__item_userresult .score {
+    background: url(../img/score.png);
+    width: 110px;
+    height: 160px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider__item_userresult .score span {
+
+}
+
 .slider .slider__item_start,
 .slider .slider__item_answerresult,
 .slider .slider__item_map,
