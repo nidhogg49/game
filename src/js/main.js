@@ -264,7 +264,9 @@ $(document).ready(function(){
         firebase.database().ref('/gameover').once('value').then(function(snapshot) {
             return snapshot.val();
         }).then(function(gameover) {
-            $('.js-button-gameresult').css('display', gameover ? 'flex' : 'none');
+            if(gameover) {
+                $('.js-button-gameresult').css('display', 'flex');
+            }
         });
 
         $('.slider__item_userresult .score').html(game.score + '<span>' + (game.score === 0 ? 'баллов' : game.score === 1 ? 'балл' : game.score < 5 ? 'баллa' : 'баллов') + '<span/>');

@@ -420,3 +420,7 @@ body {
         transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,35,0,1);
     }
 }
+
+.js-button-gameresult {
+    display: none;
+}
