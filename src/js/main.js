@@ -87,11 +87,13 @@ $(document).ready(function(){
         game.questions[6].result = true;
         game.current = 10;
 
-        game.questions.forEach(function(el){
-            game.score = game.score + el.result;
-        });
+        if(game.score === 0) {
+            game.questions.forEach(function(el){
+                game.score = +game.score + +el.result;
+            });
 
-        pushUserResult();
+            pushUserResult();
+        }
 
         $('.slider__item_userresult .score').html(game.score + '<span>' + (game.score === 0 ? 'баллов' : game.score === 1 ? 'балл' : game.score < 5 ? 'баллa' : 'баллов') + '<span/>');
         $slider.slick('slickGoTo', 10,  false);
@@ -104,46 +106,48 @@ $(document).ready(function(){
         var scoretableHTML = '';
         var $scoretable = $('.scoretable');
 
-        if ($scoretable.html().length === 0) {
-            console.log(1);
+            if ($scoretable.html().length === 0) {
+                firebase.database().ref('/users').once('value').then(function(snapshot) {
+                        return snapshot.val() || {};
+                    }).then(function(users) {
+                        usersList = Object.keys(users).map(item => users[item]);
 
-        firebase.database().ref('/users').once('value').then(function(snapshot) {
-                    return snapshot.val() || {};
-                }).then(function(users) {
-                    usersList = Object.keys(users).map(item => users[item]);
+                        if (usersList.length > 0) {
+                            usersList.sort(function(a, b) {
+                                if (a.score < b.score) return 1;
+                                if (a.score > b.score) return -1;
+                                if (a.timestamp < b.timestamp) return -1;
+                                if (a.timestamp > b.timestamp) return 1;
+                                return 0;  
+                            });
 
-                    if (usersList.length > 0) {
-                        usersList.sort(function(a, b) {
-                            if (a.score < b.score) return 1;
-                            if (a.score > b.score) return -1;
-                            if (a.timestamp < b.timestamp) return -1;
-                            if (a.timestamp > b.timestamp) return 1;
-                            return 0;  
-                        });
+                            console.log(usersList);
 
-                        console.log(usersList);
+                            usersList.forEach(function(el, i) {
+                                if (i < 3) {
+                                    scoretableHTML = $scoretable.html();
+                                    var date = new Date(el.timestamp)
+                                    var time = date.getHours() + ':' +
+                                                (date.getMinutes()<10?'0':'') + date.getMinutes() + ':' +
+                                                (date.getSeconds()<10?'0':'')  + date.getSeconds();
 
-                        usersList.forEach(function(el, i) {
-                            if (i <= 3) {
-                                scoretableHTML = $scoretable.html();
-                                var date = new Date(el.timestamp)
-                                var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                                    $scoretable.html(scoretableHTML +
+                                        '<div class="scoretable__content">' +
+                                            '<div class="scoretable__item">' +
+                                                '<span class="scoretable__name">' + el.fio + '</span>' +
+                                                '<span class="scoretable__time">' +
+                                                el.score + (el.score === 0 ? ' баллов' : el.score === 1 ? ' балл' : el.score < 5 ? ' баллa' : ' баллов') +
+                                                ' — ' + time + '</span>' +
+                                            '</div>'+
+                                        '</div>');
+                                } else {
+                                    return;
+                                }
+                            });
 
-                                $scoretable.html(scoretableHTML +
-                                    '<div class="scoretable__content">' +
-                                        '<div class="scoretable__item">' +
-                                            '<span class="scoretable__name">' + el.fio + '</span>' +
-                                            '<span class="scoretable__time">' + el.score + ' — ' + time + '</span>' +
-                                        '</div>'+
-                                    '</div>');
-                            } else {
-                                return;
-                            }
-                        });
-
-                        $slider.slick('slickGoTo', 11,  false);
-                    }
-                });
+                            $slider.slick('slickGoTo', 11,  false);
+                        }
+                    });
             } else {
                 $slider.slick('slickGoTo', 11,  false);
             }
