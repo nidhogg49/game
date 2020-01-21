@@ -105,8 +105,15 @@ $(document).ready(function(){
         var usersList = [];
         var scoretableHTML = '';
         var $scoretable = $('.scoretable');
+        var gameover = false;
 
-            if ($scoretable.html().length === 0) {
+        firebase.database().ref('/gameover').once('value').then(function(snapshot) {
+            return snapshot.val() || true;
+        }).then(function(flag) {
+            gameover = $('.js-button-gameresult').css('display', flag ? 'flex' : 'none');
+        });
+
+            if ($scoretable.html().length === 0 && !gameover) {
                 firebase.database().ref('/users').once('value').then(function(snapshot) {
                         return snapshot.val() || {};
                     }).then(function(users) {
@@ -252,6 +259,12 @@ $(document).ready(function(){
             swipe: false,
             touchMove: false,
             initialSlide: getGameFromLocalStorage().current,
+        });
+
+        firebase.database().ref('/gameover').once('value').then(function(snapshot) {
+            return snapshot.val();
+        }).then(function(gameover) {
+            $('.js-button-gameresult').css('display', gameover ? 'flex' : 'none');
         });
 
         $('.slider__item_userresult .score').html(game.score + '<span>' + (game.score === 0 ? 'баллов' : game.score === 1 ? 'балл' : game.score < 5 ? 'баллa' : 'баллов') + '<span/>');
