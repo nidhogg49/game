@@ -175,7 +175,7 @@ $(document).ready(function(){
                     wrongText: '',
                 },
             ],
-            current: 9, //:TODO
+            current: 0,
             result: null
         };
 
